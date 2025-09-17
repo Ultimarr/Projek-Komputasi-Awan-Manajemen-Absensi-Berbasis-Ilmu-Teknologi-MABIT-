@@ -49,25 +49,150 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: url("58549377-8704-4f0a-944f-add20ca57f41.png") no-repeat center center/cover;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: -1;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 40px 30px;
+      width: 350px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      height: 45px;
+      padding: 0 15px 0 40px;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 18px;
+      pointer-events: none;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .options a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .btn {
+      width: 100%;
+      height: 45px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(90deg, #8B4513, #A0522D);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, #A0522D, #8B4513);
+    }
+
+    .register {
+      margin-top: 15px;
+      font-size: 12px;
+    }
+
+    .register a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <h2>Login</h2>
+  <div class="login-box">
+    <h2>Login to Your Account</h2>
+    <form method="POST" action="">
+      <div class="input-group">
+        <input type="text" name="NIK" placeholder="NIK" required />
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="input-group">
+        <input type="password" name="Password" placeholder="Password" required />
+        <i class="fas fa-lock"></i>
+      </div>
+      <div class="options">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="register">
+        Don’t have an account? <a href="#">Register</a>
+      </div>
+    </form>
 
-  <form method="POST" action="">
-    <label for="NIK">NIK:</label>
-    <input type="text" id="NIK" name="NIK" required><br><br>
+    <?php if (!empty($error)): ?>
+      <p style="color:red;"><?php echo $error; ?></p>
+    <?php endif; ?>
 
-    <label for="Password">Password:</label>
-    <input type="password" id="Password" name="Password" required><br><br>
+  </div>
 
-    <button type="submit">Login</button>
-  </form>
 
-  <?php if (!empty($error)): ?>
-    <p style="color:red;"><?php echo $error; ?></p>
-  <?php endif; ?>
 </body>
+
 </html>
